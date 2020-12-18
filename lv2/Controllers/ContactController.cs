@@ -1,4 +1,5 @@
 ﻿using lv2.Models;
+using lv2.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,21 +11,15 @@ namespace lv2.Controllers
 {
     public class ContactController : ApiController
     {
+        private ContactRepository contactRepository;
+
+        public ContactController()
+        {
+            this.contactRepository = new ContactRepository();
+        }
         public Contact[] Get()
         {
-            return new Contact[]
-    {
-        new Contact
-        {
-            Id = 1,
-            Name = "Glenn Block"
-        },
-        new Contact
-        {
-            Id = 2,
-            Name = "Dan Roth"
-        }
-    };
+            return contactRepository.GetAllContacts();
         }
     }
 }
